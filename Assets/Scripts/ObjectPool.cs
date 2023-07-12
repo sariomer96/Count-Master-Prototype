@@ -66,7 +66,7 @@ public class ObjectPool :MonoBehaviour
         
         pools[(int)characterTypes].pooledObjects.Add(character.gameObject);
     }
-    public Character GetPooledObject(int objectType,Transform parentTransform)
+    public CharacterUnit GetPooledObject(int objectType,Transform parentTransform)
     {
         
         GameObject character = null;
@@ -94,11 +94,11 @@ public class ObjectPool :MonoBehaviour
              pools[objectType].pooledObjects.Remove(character);
          
             
-      
-             character.gameObject.SetActive(true);
              character.transform.parent = parentTransform;
-            Character player= character.GetComponent<Character>();
+             character.gameObject.SetActive(true);
+       
+            CharacterUnit charUnit= character.GetComponent<CharacterUnit>();
            
-            return player;
+            return charUnit;
     }
 }

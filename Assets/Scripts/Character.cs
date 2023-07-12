@@ -10,7 +10,8 @@ public class Character : MonoBehaviour
 
     
   
-   [SerializeField] protected PoolTypes.CharacterTypes characterType;
+   [SerializeField] public PoolTypes.CharacterTypes characterType;
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();

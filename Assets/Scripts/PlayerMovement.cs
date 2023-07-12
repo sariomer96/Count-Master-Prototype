@@ -22,7 +22,8 @@ public class PlayerMovement : Character, IMovable
 
     private void Start()
     {
-         ObjectPool.Instance.GetPooledObject((int)characterType,this.transform);
+         
+        
     }
 
     private void Update()
