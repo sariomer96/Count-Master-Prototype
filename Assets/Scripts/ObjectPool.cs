@@ -59,7 +59,7 @@ public class ObjectPool :MonoBehaviour
  
  
 
-    public void ReturnToPool(Character character,PoolTypes.CharacterTypes characterTypes)
+    public void ReturnToPool(CharacterUnit character,PoolTypes.CharacterTypes characterTypes)
     {
         character.transform.parent =transform;
         character.gameObject.SetActive(false);

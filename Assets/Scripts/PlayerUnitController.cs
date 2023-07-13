@@ -47,21 +47,27 @@ public class PlayerUnitController : CharacterUnit
     {
         if (agent.enabled) agent.SetDestination(destination.localPosition);
     }
-
-    private void OnTriggerExit(Collider other)
-    {
-        
-    }
+ 
 
     private void OnTriggerEnter(Collider other)
     {
-        /*if (other.CompareTag("bridge"))
+        if (other.CompareTag("trap"))
         {
-            agent.enabled = false;
-            _rigidbody.constraints = RigidbodyConstraints.None;
-            _rigidbody.useGravity = true;
 
-        }*/
+            StartCoroutine(nameof(Fall));
+        }
+    }
+
+    IEnumerator Fall()
+    {
+        agent.enabled = false;
+        _rigidbody.constraints = RigidbodyConstraints.None;
+        _rigidbody.useGravity = true;
+        
+        yield return new WaitForSeconds(3.5f);
+        
+        Character character = transform.GetComponentInParent<Character>();
+        ObjectPool.Instance.ReturnToPool(this,character.characterType);
     }
 
     #endregion

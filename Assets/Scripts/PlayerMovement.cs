@@ -20,11 +20,7 @@ public class PlayerMovement : Character, IMovable
 
     }
 
-    private void Start()
-    {
-         
-        
-    }
+ 
 
     private void Update()
     {

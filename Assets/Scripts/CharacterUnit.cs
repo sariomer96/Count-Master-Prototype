@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharacterUnit : MonoBehaviour
 {
     private CrowdSpawner spawner;
-  
+   
 
     // Start is called before the first frame update
     void OnEnable()
