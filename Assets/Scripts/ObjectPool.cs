@@ -95,6 +95,7 @@ public class ObjectPool :MonoBehaviour
          
             
              character.transform.parent = parentTransform;
+             character.transform.localPosition=Vector3.zero;
              character.gameObject.SetActive(true);
        
             CharacterUnit charUnit= character.GetComponent<CharacterUnit>();

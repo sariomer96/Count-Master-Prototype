@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
+ 
+
 public class CrowdSpawner : MonoBehaviour
 {
     private Character character;
@@ -47,11 +49,13 @@ public class CrowdSpawner : MonoBehaviour
     
     void SortCrowd()
     {
-        print(_characterUnits.Count);
+        
         for (int i = 0; i < _characterUnits.Count; i++)
         {
-            Vector2 pos = new Vector2(_density * Mathf.Sqrt(i) * Mathf.Cos(i * _radius),
-                _density*Mathf.Sqrt(i)*Mathf.Sin(i*_radius));
+           
+            
+            Vector2 pos = new Vector2(_density  * Mathf.Cos(i * _radius),
+                _density*Mathf.Sin(i*_radius));
 
             Vector3 newPos = new Vector3(pos.x, 0, pos.y);
 

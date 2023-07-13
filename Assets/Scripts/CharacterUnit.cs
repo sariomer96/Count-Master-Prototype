@@ -13,12 +13,13 @@ public class CharacterUnit : MonoBehaviour
         spawner=  GetComponentInParent<CrowdSpawner>();
         spawner._characterUnits.Add(this);
       
-       
     }
 
     private void OnDisable()
     {
-        spawner._characterUnits.Remove(this);
+        if (spawner)
+            spawner._characterUnits.Remove(this);
+      
     }
 
 }

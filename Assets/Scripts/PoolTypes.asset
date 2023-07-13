@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67809d3c026cb924e994480825f9bd18, type: 3}
   m_Name: PoolTypes
   m_EditorClassIdentifier: 
-  characterPool: []
+  characterPool:
+  - character: {fileID: 5044254711548045422, guid: cf5a5f9570634384b971e27d6b20359b, type: 3}
+    poolSize: 10
+    Types: 0
+  - character: {fileID: 5044254711548045422, guid: fc669595cc2fda14dbd3671a1e57812c, type: 3}
+    poolSize: 12
+    Types: 1
