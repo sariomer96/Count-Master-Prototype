@@ -7,6 +7,8 @@ TagManager:
   - ground
   - bridge
   - trap
+  - enemyUnit
+  - enemyArea
   layers:
   - Default
   - TransparentFX

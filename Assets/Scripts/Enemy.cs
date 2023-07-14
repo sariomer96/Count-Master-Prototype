@@ -1,11 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : Character,IMovable
+public class Enemy : Character
 {
-    public void Move()
+    private PlayerMovement _playerMovement;
+    private void OnTriggerEnter(Collider other)
     {
-        throw new System.NotImplementedException();
+        if (other.CompareTag("Player"))
+        {
+            _playerMovement = other.GetComponent<PlayerMovement>();
+            SetTargetNavAgentAllUnit(other.transform);
+        }
+        
+        
+    }
+
+    public override void FightStatus()
+    {
+         _playerMovement.SetTargetNavAgentAllUnit(_playerMovement.transform);
     }
 }

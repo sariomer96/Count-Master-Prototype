@@ -1,18 +1,30 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyUnitController : MonoBehaviour
+public class EnemyUnitController : CharacterUnit
 {
-    // Start is called before the first frame update
-    void Start()
+   
+    
+    
+    private void OnDisable()
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+
+        if (_character)
+        {
+            _character.characterUnits.Remove(this);
+            if (_character.characterUnits.Count==0)
+            {
+                CheckFightStatus();
+              
+            }
+        }
+            
+    }
+    protected override void CheckFightStatus()
     {
-        
+         
     }
 }

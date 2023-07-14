@@ -11,8 +11,10 @@ public class PlayerMovement : Character, IMovable
     private Vector3 _pos;
     public float verticalSpeed = 2f;
     private float mouseX = 0f;
-
+    private Enemy _enemy;
     [SerializeField] private float _swerveSpeed = 10f;
+    private Rigidbody _rigidbody;
+    
     public void Move()
     {
  
@@ -20,7 +22,19 @@ public class PlayerMovement : Character, IMovable
 
     }
 
- 
+    
+    void StopMove()
+    {
+        
+        verticalSpeed = 0;
+        _swerveSpeed = 0;
+    }
+
+    void StartMove()
+    {
+        verticalSpeed = 2f;
+        _swerveSpeed = 10f;
+    }
 
     private void Update()
     {
@@ -31,16 +45,31 @@ public class PlayerMovement : Character, IMovable
 
     private void Awake()
     {
+        _rigidbody = GetComponent<Rigidbody>();
         _swerveInputSystem = GetComponent<SwerveInputSystem>();
-     
-    }
-
-  
-    private void FixedUpdate()
-    {
-     
-        Move();
-    
       
     }
+
+    public override void FightStatus()
+    {
+        //SetTargetNavAgentAllUnit(transform);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("enemyArea"))
+        {
+            _enemy = other.GetComponent<Enemy>();
+            StopMove();
+            SetTargetNavAgentAllUnit(other.transform);
+
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        Move();
+    }
+
+ 
 }

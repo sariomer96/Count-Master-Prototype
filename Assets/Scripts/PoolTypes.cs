@@ -22,7 +22,6 @@ public class PoolTypes : ScriptableObject
     public enum CharacterTypes
     {
         MainPlayer,
-        Player,
         Enemy,
         
     }

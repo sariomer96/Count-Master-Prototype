@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ObjectPool :MonoBehaviour
 {
@@ -81,12 +82,11 @@ public class ObjectPool :MonoBehaviour
   
             
              character = Instantiate( _poolTypes.characterPool[objectType].character,transform);
-             character.gameObject.SetActive(false);
+            character.gameObject.SetActive(false);
           
          
             pools[objectType].pooledObjects.Add(character);
-        
-
+         
         }
 
         character = pools[objectType].pooledObjects[pools[objectType].pooledObjects.Count - 1];    
@@ -95,7 +95,7 @@ public class ObjectPool :MonoBehaviour
          
             
              character.transform.parent = parentTransform;
-             character.transform.localPosition=Vector3.zero;
+             character.transform.localPosition=new Vector3(Random.Range(-0.5f,.5f),0,0);
              character.gameObject.SetActive(true);
        
             CharacterUnit charUnit= character.GetComponent<CharacterUnit>();

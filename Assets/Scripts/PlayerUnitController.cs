@@ -6,48 +6,12 @@ using UnityEngine.AI;
 
 public class PlayerUnitController : CharacterUnit
 {
-    private Rigidbody _rigidbody;
-    #region Private Fields
-
-    [SerializeField] private Transform destination;
-   
-    
-    private NavMeshAgent agent;
-    private bool isDead = false;
-
-    #endregion
-
-    #region Properties
-
-    public bool IsDead
-    {
-        get => isDead;
-        set => isDead = value;
-    }
-
-    #endregion
-
     #region Unity Methods
 
-    private void Start()
-    {
-        
-        agent = this.GetComponent<NavMeshAgent>();
-        _rigidbody = GetComponent<Rigidbody>();
-    }
-
-    void OnEnable()
-    {
-        destination = transform.parent;
-    }
 
     
-
-    private void Update()
-    {
-        if (agent.enabled) agent.SetDestination(destination.localPosition);
-    }
- 
+    
+   
 
     private void OnTriggerEnter(Collider other)
     {
@@ -55,6 +19,15 @@ public class PlayerUnitController : CharacterUnit
         {
 
             StartCoroutine(nameof(Fall));
+        }
+
+        if (other.CompareTag("enemyUnit"))
+        {
+            CharacterUnit enemy=other.GetComponentInParent<CharacterUnit>();
+            ObjectPool.Instance.ReturnToPool(this,PoolTypes.CharacterTypes.MainPlayer);
+            ObjectPool.Instance.ReturnToPool(enemy,PoolTypes.CharacterTypes.Enemy);
+            other.gameObject.SetActive(false);
+            this.gameObject.SetActive(false);
         }
     }
 
@@ -71,6 +44,10 @@ public class PlayerUnitController : CharacterUnit
     }
 
     #endregion
- 
- 
+
+
+    protected override void CheckFightStatus()
+    {
+         print("gameover");
+    }
 }

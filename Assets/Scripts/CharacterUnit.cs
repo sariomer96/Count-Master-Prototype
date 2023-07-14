@@ -1,25 +1,61 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class CharacterUnit : MonoBehaviour
+public abstract class CharacterUnit : MonoBehaviour
 {
     private CrowdSpawner spawner;
+    [SerializeField] public Transform destination;
+    protected Rigidbody _rigidbody;
+
+    protected abstract void CheckFightStatus();
+    protected Character _character;
+    
+    protected NavMeshAgent agent;
+    // Start is called before the first frame update
+   
    
 
-    // Start is called before the first frame update
-    void OnEnable()
+    private void Start()
     {
-        spawner=  GetComponentInParent<CrowdSpawner>();
-        spawner._characterUnits.Add(this);
-      
+        
+        agent =GetComponent<NavMeshAgent>();
+        _rigidbody = GetComponent<Rigidbody>();
+    }
+  
+    private void OnEnable()
+    {
+        
+        destination = transform.parent;
+
+        _character = transform.GetComponentInParent<Character>();
+
+        if (_character)
+            _character.characterUnits.Add(this);
+       
+
     }
 
+ 
     private void OnDisable()
+    { 
+        if (_character)
+        {
+            _character.characterUnits.Remove(this);
+            if (_character.characterUnits.Count==0)
+            {
+               _character.FightStatus();
+             
+            }
+        }
+            
+    }
+
+    private void Update()
     {
-        if (spawner)
-            spawner._characterUnits.Remove(this);
-      
+        if (agent.enabled) agent.SetDestination(destination.localPosition);
     }
 
 }
