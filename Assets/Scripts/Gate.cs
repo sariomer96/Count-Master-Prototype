@@ -16,7 +16,7 @@ public class Gate : MonoBehaviour
 
     [SerializeField] private Operation operation;
     [SerializeField] private int value;
-    [SerializeField] private TextMeshProUGUI countTxt;
+    [SerializeField] private TextMeshPro gateTxt;
    [SerializeField] private GameObject gate;
    
     #endregion
@@ -46,6 +46,23 @@ public class Gate : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+         SetGateText();
+    }
+
+    void SetGateText()
+    {
+        switch (operation)
+        {
+            case Operation.Add:
+                gateTxt.text = "+" + value;
+                break;
+            case Operation.Multiply:
+                gateTxt.text = "X" + value;
+                break;
+        }
+    }
     void Add(Transform player,int count)
     {
         for (int i = 0; i < count; i++)

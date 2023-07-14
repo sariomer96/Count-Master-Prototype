@@ -20,7 +20,11 @@ public class PlayerUnitController : CharacterUnit
         _character = transform.GetComponentInParent<Character>();
 
         if (_character)
+        {
+            _character.Count++;
             _character.characterUnits.Add(this);
+        }
+           
        
 
     }
@@ -31,10 +35,10 @@ public class PlayerUnitController : CharacterUnit
         if (_character)
         {
             _character.characterUnits.Remove(this);
-            if (_character.characterUnits.Count==0)
+            if (_character.characterUnits.Count==0&&_character)
             {
                 _character.FightStatus();
-             
+                _character.Count--;
             }
         }
             

@@ -28,13 +28,10 @@ public class EnemyUnitController : CharacterUnit
     { 
         if (_character)
         {
+       
             _character.characterUnits.Remove(this);
             _character.Count--;
-            /*if (_character.characterUnits.Count==0)
-            {
-                _character.FightStatus();
-             
-            }*/
+         
         }
             
     }
