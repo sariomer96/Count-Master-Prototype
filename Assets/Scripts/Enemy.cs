@@ -6,14 +6,14 @@ using UnityEngine;
 public class Enemy : Character
 {
     private PlayerMovement _playerMovement;
-  
+    [SerializeField] public Transform hitPoint;
  
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             _playerMovement = other.GetComponent<PlayerMovement>();
-            SetTargetNavAgentAllUnit(other.transform);
+           
         }
         
         
@@ -24,7 +24,7 @@ public class Enemy : Character
         if (Count==0)
         {
             _playerMovement.SetTargetNavAgentAllUnit(_playerMovement.transform);
-            print("TARGET DUZELDI");
+    
             _playerMovement.StartMove();
         }
     }

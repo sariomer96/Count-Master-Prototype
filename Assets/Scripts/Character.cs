@@ -7,6 +7,7 @@ public abstract class Character : MonoBehaviour
 {
     [SerializeField] protected float _moveSpeed = 2f;
     public List<CharacterUnit> characterUnits = new List<CharacterUnit>();
+
     public int Count
     {
         get

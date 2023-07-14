@@ -7,14 +7,15 @@ public class PlayerMovement : Character, IMovable
 {
 
     private SwerveInputSystem _swerveInputSystem;
-    
+  
     private Vector3 _pos;
     public float verticalSpeed = 2f;
     private float mouseX = 0f;
     private Enemy _enemy;
     [SerializeField] private float _swerveSpeed = 10f;
     private Rigidbody _rigidbody;
-  //  public static PlayerMovement Instance { get; set; }
+ //  public static PlayerMovement Instance { get; set; }
+    public Transform centerPosition;
     public void Move()
     {
  
@@ -47,12 +48,13 @@ public class PlayerMovement : Character, IMovable
     {
         _rigidbody = GetComponent<Rigidbody>();
         _swerveInputSystem = GetComponent<SwerveInputSystem>();
-        
+        /*if (Instance == null)
+            Instance = this;*/
     }
 
     public override void FightStatus()
     {
-        //SetTargetNavAgentAllUnit(transform);
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -61,11 +63,21 @@ public class PlayerMovement : Character, IMovable
         {
             _enemy = other.GetComponent<Enemy>();
             StopMove();
-            SetTargetNavAgentAllUnit(other.transform);
+
+           Transform hitCenter= GetCenterTransform(_enemy.transform.position);
+            SetTargetNavAgentAllUnit(hitCenter);
+            _enemy.SetTargetNavAgentAllUnit(hitCenter);
 
         }
     }
 
+    Transform GetCenterTransform(Vector3 enemyPosition)
+    {
+        Vector3 centerPos = (transform.position + enemyPosition) / 2;
+
+        centerPosition.position = centerPos;
+        return centerPosition;
+    }
     private void FixedUpdate()
     {
         Move();

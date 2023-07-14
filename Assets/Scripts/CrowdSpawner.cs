@@ -41,12 +41,12 @@ public class CrowdSpawner : MonoBehaviour
       
     }
 
-    void SpawnCrowd(int count)
+  public  void SpawnCrowd(int count)
     {
         for (int i = 0; i < count; i++)
         {
             ObjectPool.Instance.GetPooledObject((int)character.characterType,transform);
-          // AddNoiseToObjectPosition(characterUnit.transform);
+         
            
         }
     }
