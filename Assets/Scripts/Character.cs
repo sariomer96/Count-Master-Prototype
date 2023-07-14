@@ -3,23 +3,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public abstract class Character : MonoBehaviour
 {
     [SerializeField] protected float _moveSpeed = 2f;
     public List<CharacterUnit> characterUnits = new List<CharacterUnit>();
+    public int Count
+    {
+        get
+        {
+            return count;
+        }
+        set
+        {
+            count = value;
+            FightStatus();
+            
+        }
+    }
 
-
+    private int count=0;
    
    [SerializeField] public PoolTypes.CharacterTypes characterType;
 
 
 
 
-   public virtual void FightStatus()
-   {
-       
-   }
-
+   public abstract void FightStatus();
+    
   public void SetTargetNavAgentAllUnit(Transform target)
    {
        for (int i = 0; i < characterUnits.Count; i++)

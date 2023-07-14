@@ -5541,7 +5541,7 @@ MonoBehaviour:
   _moveSpeed: 2
   characterUnits: []
   characterType: 0
-  verticalSpeed: 1
+  verticalSpeed: 7
   _swerveSpeed: 10
 --- !u!54 &5435450236302929902
 Rigidbody:

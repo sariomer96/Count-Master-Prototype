@@ -6,6 +6,8 @@ using UnityEngine;
 public class Enemy : Character
 {
     private PlayerMovement _playerMovement;
+  
+ 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -19,6 +21,11 @@ public class Enemy : Character
 
     public override void FightStatus()
     {
-         _playerMovement.SetTargetNavAgentAllUnit(_playerMovement.transform);
+        if (Count==0)
+        {
+            _playerMovement.SetTargetNavAgentAllUnit(_playerMovement.transform);
+            print("TARGET DUZELDI");
+            _playerMovement.StartMove();
+        }
     }
 }

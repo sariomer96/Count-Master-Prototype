@@ -14,7 +14,7 @@ public class PlayerMovement : Character, IMovable
     private Enemy _enemy;
     [SerializeField] private float _swerveSpeed = 10f;
     private Rigidbody _rigidbody;
-    
+  //  public static PlayerMovement Instance { get; set; }
     public void Move()
     {
  
@@ -30,9 +30,9 @@ public class PlayerMovement : Character, IMovable
         _swerveSpeed = 0;
     }
 
-    void StartMove()
+    public void StartMove()
     {
-        verticalSpeed = 2f;
+        verticalSpeed = 7f;
         _swerveSpeed = 10f;
     }
 
@@ -47,7 +47,7 @@ public class PlayerMovement : Character, IMovable
     {
         _rigidbody = GetComponent<Rigidbody>();
         _swerveInputSystem = GetComponent<SwerveInputSystem>();
-      
+        
     }
 
     public override void FightStatus()

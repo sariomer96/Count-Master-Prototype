@@ -6,23 +6,40 @@ using UnityEngine;
 public class EnemyUnitController : CharacterUnit
 {
    
-    
-    
-    private void OnDisable()
+    private void OnEnable()
     {
+        
+        destination = transform.parent;
 
+        _character = transform.GetComponentInParent<Character>();
 
         if (_character)
         {
+            _character.characterUnits.Add(this);
+            _character.Count++;
+        }
+         
+       
+
+    }
+
+ 
+    private void OnDisable()
+    { 
+        if (_character)
+        {
             _character.characterUnits.Remove(this);
-            if (_character.characterUnits.Count==0)
+            _character.Count--;
+            /*if (_character.characterUnits.Count==0)
             {
-                CheckFightStatus();
-              
-            }
+                _character.FightStatus();
+             
+            }*/
         }
             
     }
+    
+ 
     protected override void CheckFightStatus()
     {
          
