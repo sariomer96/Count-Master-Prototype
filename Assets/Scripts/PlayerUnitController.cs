@@ -9,9 +9,8 @@ public class PlayerUnitController : CharacterUnit
     #region Unity Methods
 
 
-    
-    
-      
+
+ 
     private void OnEnable()
     {
         
@@ -29,7 +28,8 @@ public class PlayerUnitController : CharacterUnit
 
     }
 
- 
+
+  
     private void OnDisable()
     { 
         if (_character)

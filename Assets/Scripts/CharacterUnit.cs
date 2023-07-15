@@ -13,7 +13,7 @@ public abstract class CharacterUnit : MonoBehaviour
     protected abstract void CheckFightStatus();
     protected Character _character;
     
-    protected NavMeshAgent agent;
+    public NavMeshAgent agent;
     // Start is called before the first frame update
    
    
@@ -30,6 +30,7 @@ public abstract class CharacterUnit : MonoBehaviour
     private void Update()
     {
         if (agent.enabled) agent.SetDestination(destination.localPosition);
+   
     }
 
 }

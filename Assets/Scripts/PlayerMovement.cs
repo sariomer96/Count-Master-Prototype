@@ -14,7 +14,10 @@ public class PlayerMovement : Character, IMovable
     private Enemy _enemy;
     [SerializeField] private float _swerveSpeed = 10f;
     private Rigidbody _rigidbody;
- //  public static PlayerMovement Instance { get; set; }
+    
+    private BuildTower _buildTower;
+    private Btsf _btsf;
+   public static PlayerMovement Instance { get; set; }
     public Transform centerPosition;
     public void Move()
     {
@@ -29,6 +32,7 @@ public class PlayerMovement : Character, IMovable
         
         verticalSpeed = 0;
         _swerveSpeed = 0;
+        
     }
 
     public void StartMove()
@@ -48,8 +52,8 @@ public class PlayerMovement : Character, IMovable
     {
         _rigidbody = GetComponent<Rigidbody>();
         _swerveInputSystem = GetComponent<SwerveInputSystem>();
-        /*if (Instance == null)
-            Instance = this;*/
+        if (Instance == null)
+            Instance = this;
     }
 
     public override void FightStatus()
@@ -69,6 +73,31 @@ public class PlayerMovement : Character, IMovable
             _enemy.SetTargetNavAgentAllUnit(hitCenter);
 
         }
+
+        if (other.CompareTag("Finish"))
+        {
+            StopNavmesh();
+             StopMove();
+        //            _buildTower.Build();
+            _btsf.Build();;
+            print("trig");
+            
+        }
+    }
+
+    void StopNavmesh()
+    {
+        for (int i = 0; i < characterUnits.Count; i++)
+        {
+            characterUnits[i].agent.enabled = false;
+        }
+    }
+
+    private void Start()
+    {
+        
+       // _buildTower = GetComponent<BuildTower>();
+       _btsf = GetComponent<Btsf>();
     }
 
     Transform GetCenterTransform(Vector3 enemyPosition)
@@ -80,7 +109,8 @@ public class PlayerMovement : Character, IMovable
     }
     private void FixedUpdate()
     {
-        Move();
+       
+            Move(); 
     }
 
  
