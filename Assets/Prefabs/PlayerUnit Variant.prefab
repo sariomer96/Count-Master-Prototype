@@ -12,6 +12,10 @@ PrefabInstance:
       value: PlayerUnit Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1466372509543288353, guid: 6118ea5b20fd8004dbd2f7ac9f9dae58, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466372509543288353, guid: 6118ea5b20fd8004dbd2f7ac9f9dae58, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -87,3 +91,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 0}
+  agent: {fileID: 0}

@@ -9,6 +9,7 @@ TagManager:
   - trap
   - enemyUnit
   - enemyArea
+  - stair
   layers:
   - Default
   - TransparentFX
@@ -16,9 +17,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - PlayerUnit
+  - Tower
+  - Stair
   - 
   - 
   - 

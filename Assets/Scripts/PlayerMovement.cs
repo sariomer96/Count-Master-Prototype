@@ -79,10 +79,11 @@ public class PlayerMovement : Character, IMovable
             StopNavmesh();
              StopMove();
         //            _buildTower.Build();
-            _btsf.Build();;
-            print("trig");
-            
+            _btsf.Build();
+           
         }
+
+        
     }
 
     void StopNavmesh()
