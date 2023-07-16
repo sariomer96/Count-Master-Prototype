@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 131792664923028694, guid: 6118ea5b20fd8004dbd2f7ac9f9dae58, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1466372509543288353, guid: 6118ea5b20fd8004dbd2f7ac9f9dae58, type: 3}
       propertyPath: m_Name
       value: PlayerUnit Variant
