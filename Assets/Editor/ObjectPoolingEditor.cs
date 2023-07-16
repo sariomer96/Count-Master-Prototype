@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(ObjectPool))]
+[CustomEditor(typeof(ObjectPool.ObjectPool))]
 public class ObjectPoolingEditor :Editor
 {
     
     // Start is called before the first frame update
     public override void OnInspectorGUI()
     {
-        ObjectPool objectPool = (ObjectPool)target;
+        ObjectPool.ObjectPool objectPool = (ObjectPool.ObjectPool)target;
      base.OnInspectorGUI();    
         if (GUILayout.Button("Create Pool"))
         {

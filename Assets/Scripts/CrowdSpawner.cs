@@ -8,12 +8,12 @@ using Random = UnityEngine.Random;
 
 public class CrowdSpawner : MonoBehaviour
 {
-    private Colony _colony;
+    private Colony.Colony _colony;
     [SerializeField] private int _spawnCount;
   
     void Start()
     {
-        _colony = GetComponent<Colony>();
+        _colony = GetComponent<Colony.Colony>();
         SpawnCrowd(_spawnCount);
     } 
   
@@ -22,7 +22,7 @@ public class CrowdSpawner : MonoBehaviour
   {
       
     for (int i = 0; i < count; i++) 
-        ObjectPool.Instance.GetPooledObject((int)_colony.characterType,transform);
+        ObjectPool.ObjectPool.Instance.GetPooledObject((int)_colony.characterType,transform);
   }
   
 }

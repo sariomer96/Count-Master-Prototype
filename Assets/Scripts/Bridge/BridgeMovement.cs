@@ -1,17 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
-public class BridgeMovement : MonoBehaviour
+namespace Bridge
 {
-    [SerializeField] private float moveRate = 2f;
-
-    [SerializeField] private float speed = 5f;
- 
-    void Start()
+    public class BridgeMovement : MonoBehaviour
     {
-        transform.DOMoveX(moveRate, speed).SetLoops(-1,LoopType.Yoyo).SetEase(Ease.Linear).SetSpeedBased(true);
-    }
+        [SerializeField] private float moveRate = 2f;
+
+        [SerializeField] private float speed = 5f;
  
+        void Start()
+        {
+            transform.DOMoveX(moveRate, speed).SetLoops(-1,LoopType.Yoyo).SetEase(Ease.Linear).SetSpeedBased(true);
+        }
+ 
+    }
 }
