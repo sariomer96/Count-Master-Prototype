@@ -15,14 +15,15 @@ public abstract class CharacterUnit : MonoBehaviour
     
     public NavMeshAgent agent;
     // Start is called before the first frame update
-   
-   
 
+
+    private float _tempSpeed;
     private void Start()
     {
         
         agent =GetComponent<NavMeshAgent>();
         _rigidbody = GetComponent<Rigidbody>();
+        _tempSpeed = agent.speed;
     }
   
 

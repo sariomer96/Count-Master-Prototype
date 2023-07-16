@@ -13,7 +13,7 @@ public class Enemy : Character
         if (other.CompareTag("Player"))
         {
             _playerMovement = other.GetComponent<PlayerMovement>();
-           
+            SetNavAgentSpeed(navAgentMaxSpeed);
         }
         
         
@@ -28,6 +28,7 @@ public class Enemy : Character
             _playerMovement.SetTargetNavAgentAllUnit(_playerMovement.transform);
     
             _playerMovement.StartMove();
+            _playerMovement.SetNavAgentSpeed(_playerMovement.navAgentSpeed);
         }
     }
 }

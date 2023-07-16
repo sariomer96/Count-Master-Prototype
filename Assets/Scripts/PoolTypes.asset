@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterPool:
   - character: {fileID: 1394254875631959138, guid: ea95239e0b3f0364287539632e93063e, type: 3}
-    poolSize: 10
+    poolSize: 30
     Types: 0
   - character: {fileID: 7690201474758862178, guid: 4bbd5c85bb3a9644a95ca4493e5247bc, type: 3}
-    poolSize: 12
-    Types: 2
+    poolSize: 30
+    Types: 1

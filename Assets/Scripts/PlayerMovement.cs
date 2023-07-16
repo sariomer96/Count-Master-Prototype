@@ -15,9 +15,10 @@ public class PlayerMovement : Character, IMovable
     private Enemy _enemy;
     [SerializeField] private float _swerveSpeed = 10f;
     private Rigidbody _rigidbody;
-    
+ 
     private BuildTower _buildTower;
     private Btsf _btsf;
+ 
    public static PlayerMovement Instance { get; set; }
    public float clampX = 2;
   
@@ -116,6 +117,7 @@ public class PlayerMovement : Character, IMovable
             SetTargetNavAgentAllUnit(hitCenter);
             _enemy.SetTargetNavAgentAllUnit(hitCenter);
 
+            SetNavAgentSpeed(navAgentMaxSpeed);
         }
 
         if (other.CompareTag("Finish"))
@@ -142,7 +144,8 @@ public class PlayerMovement : Character, IMovable
     {
          
        _btsf = GetComponent<Btsf>();
-      
+ 
+
     }
 
     /*

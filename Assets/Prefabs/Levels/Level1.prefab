@@ -641,6 +641,10 @@ PrefabInstance:
       propertyPath: hitPoint
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7522773630868292595, guid: 2d4a5331bc3bfcb4ca99da57a8bda32c, type: 3}
+      propertyPath: navAgentMaxSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7522773630868292598, guid: 2d4a5331bc3bfcb4ca99da57a8bda32c, type: 3}
       propertyPath: count
       value: 25

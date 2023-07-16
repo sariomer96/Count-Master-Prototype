@@ -11,6 +11,8 @@ public abstract class Character : MonoBehaviour
     public List<CharacterUnit> characterUnits = new List<CharacterUnit>();
     [SerializeField] protected TextMeshPro countTxt;
      private event Action OnCountChanged;
+     [SerializeField] public float navAgentSpeed=0.3f;
+     public float navAgentMaxSpeed=7f;
     public int Count
     {
         get
@@ -79,6 +81,14 @@ public abstract class Character : MonoBehaviour
            characterUnits[i].destination = target;
        }
    }
+
+  public void SetNavAgentSpeed(float speed)
+  {
+      for (int i = 0; i < characterUnits.Count; i++)
+      {
+          characterUnits[i].agent.speed = speed;
+      }
+  }
    
     
 }
