@@ -21,8 +21,10 @@ public class Enemy : Character
 
     public override void FightStatus()
     {
+        
         if (Count==0&&_playerMovement)
         {
+             
             _playerMovement.SetTargetNavAgentAllUnit(_playerMovement.transform);
     
             _playerMovement.StartMove();

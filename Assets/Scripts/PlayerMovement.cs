@@ -65,8 +65,8 @@ public class PlayerMovement : Character, IMovable
 
     public override void FightStatus()
     {
-        UiManager.Instance.Retry();
-         StopMove();
+        /*UiManager.Instance.Retry();
+         StopMove();*/
         
     }
     public void RemoveUnit(CharacterUnit unit)

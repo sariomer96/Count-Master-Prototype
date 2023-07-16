@@ -54,14 +54,11 @@ public class PlayerUnitController : CharacterUnit
     {
         if (playerMovement)
         {
-            print(playerMovement);
             playerMovement.RemoveUnit(this);
-     
-            playerMovement.Count--;
             if (playerMovement.characterUnits.Count==0)
             {
               
-                playerMovement.FightStatus();
+                playerMovement.FailCheck();
              
             }
         }

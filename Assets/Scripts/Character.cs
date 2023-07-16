@@ -17,7 +17,7 @@ public abstract class Character : MonoBehaviour
         set
         {
             count = value;
-            // FightStatus();
+            FightStatus();
             
         }
     }
