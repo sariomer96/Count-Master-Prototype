@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
@@ -44,10 +45,11 @@ public abstract class Character : MonoBehaviour
 
    private void OnDisable()
    {
+      
        if(!this.gameObject.scene.isLoaded) return;
        OnCountChanged -= SetCountText;
    }
-
+    
    public void AddUnit(CharacterUnit unit)
    {
        Count++;
@@ -58,11 +60,15 @@ public abstract class Character : MonoBehaviour
 
    protected void SetCountText()
    {
-      
-       DoText.SetText(countTxt, characterUnits.Count);
-     
-   }
 
+       countTxt.text = characterUnits.Count.ToString();
+
+       if (characterUnits.Count == 0)
+           countTxt.enabled = false;
+
+   }
+   
+ 
 
    public abstract void FightStatus();
     
