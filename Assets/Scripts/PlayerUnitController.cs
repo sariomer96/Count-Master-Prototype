@@ -8,20 +8,21 @@ public class PlayerUnitController : CharacterUnit
 {
     #region Unity Methods
 
-
-
+    private PlayerMovement playerMovement;
  
     private void OnEnable()
     {
         
         destination = transform.parent;
 
-        _character = transform.GetComponentInParent<Character>();
+        
 
-        if (_character)
+         playerMovement = transform.GetComponentInParent<PlayerMovement>();
+     
+        if (playerMovement)
         {
-            _character.Count++;
-            _character.characterUnits.Add(this);
+            playerMovement.Count++;
+            playerMovement.characterUnits.Add(this);
         }
            
        
@@ -32,16 +33,38 @@ public class PlayerUnitController : CharacterUnit
   
     private void OnDisable()
     { 
-        if (_character)
+        /*if (playerMovement)
         {
-            _character.characterUnits.Remove(this);
-            if (_character.characterUnits.Count==0&&_character)
+            
+            print(playerMovement);
+             playerMovement.RemoveUnit(this);
+     
+           playerMovement.Count--;
+            if (playerMovement.characterUnits.Count==0)
             {
-                _character.FightStatus();
-                _character.Count--;
+                print("ll");
+                playerMovement.FightStatus();
+             
+            }
+        }*/
+            
+    }
+
+    void KillUnit()
+    {
+        if (playerMovement)
+        {
+            print(playerMovement);
+            playerMovement.RemoveUnit(this);
+     
+            playerMovement.Count--;
+            if (playerMovement.characterUnits.Count==0)
+            {
+              
+                playerMovement.FightStatus();
+             
             }
         }
-            
     }
 
     private void OnTriggerEnter(Collider other)
@@ -57,21 +80,27 @@ public class PlayerUnitController : CharacterUnit
             CharacterUnit enemy=other.GetComponentInParent<CharacterUnit>();
             ObjectPool.Instance.ReturnToPool(this,PoolTypes.CharacterTypes.MainPlayer);
             ObjectPool.Instance.ReturnToPool(enemy,PoolTypes.CharacterTypes.Enemy);
+            KillUnit();
             other.gameObject.SetActive(false);
-            this.gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
     }
 
     IEnumerator Fall()
     {
+ 
+       
         agent.enabled = false;
         _rigidbody.constraints = RigidbodyConstraints.None;
         _rigidbody.useGravity = true;
+        playerMovement.RemoveUnit(this);
+        playerMovement.FailCheck();
+        yield return new WaitForSeconds(1f);
         
-        yield return new WaitForSeconds(3.5f);
         
         Character character = transform.GetComponentInParent<Character>();
         ObjectPool.Instance.ReturnToPool(this,character.characterType);
+      
     }
 
     #endregion

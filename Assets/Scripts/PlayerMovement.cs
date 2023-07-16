@@ -18,16 +18,18 @@ public class PlayerMovement : Character, IMovable
     private BuildTower _buildTower;
     private Btsf _btsf;
    public static PlayerMovement Instance { get; set; }
+   public float clampX = 2;
+   private event Action OnRemoveUnit;
     public Transform centerPosition;
     public void Move()
     {
  
         _rigidbody.velocity = new Vector3(_pos.x*_swerveSpeed, 0, verticalSpeed);
-
+    
     }
 
     
-    void StopMove()
+    public void StopMove()
     {
         
         verticalSpeed = 0;
@@ -44,7 +46,11 @@ public class PlayerMovement : Character, IMovable
     private void Update()
     {
         _pos = _swerveInputSystem.GetDirection();
-         
+        
+        Vector3 pos = _rigidbody.position;
+        pos.x = Mathf.Clamp(pos.x, -clampX,clampX);
+
+        transform.position = pos;
     }
 
 
@@ -55,12 +61,31 @@ public class PlayerMovement : Character, IMovable
         if (Instance == null)
             Instance = this;
     }
+    
 
     public override void FightStatus()
     {
+        UiManager.Instance.Retry();
+         StopMove();
         
     }
+    public void RemoveUnit(CharacterUnit unit)
+    {
+         
+         Count--;
+        characterUnits.Remove(unit);
+       // OnRemoveUnit?.Invoke();
+    }
 
+      public void FailCheck()
+     {
+        
+        if (characterUnits.Count==0)
+        {
+            UiManager.Instance.Retry();
+            StopMove();
+        } 
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("enemyArea"))
@@ -78,7 +103,7 @@ public class PlayerMovement : Character, IMovable
         {
             StopNavmesh();
              StopMove();
-        //            _buildTower.Build();
+       
             _btsf.Build();
            
         }
@@ -96,9 +121,14 @@ public class PlayerMovement : Character, IMovable
 
     private void Start()
     {
-        
-       // _buildTower = GetComponent<BuildTower>();
+         
+       OnRemoveUnit += FailCheck;
        _btsf = GetComponent<Btsf>();
+    }
+
+    private void OnDisable()
+    {
+        OnRemoveUnit -= FailCheck;
     }
 
     Transform GetCenterTransform(Vector3 enemyPosition)

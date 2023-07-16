@@ -10,7 +10,7 @@ public class Btsf : MonoBehaviour
     [SerializeField] int perRowMaxHumanCount;
     [SerializeField] float distanceBetweenHumans;
    [SerializeField] List<int> towerCountList;
-  [SerializeField]  List<GameObject> towerList=new List<GameObject>();
+  [SerializeField] public static List<GameObject> towerList=new List<GameObject>();
   [SerializeField] private Transform towerTransform;
   [SerializeField] private GameObject towerPrefab;
   private List<GameObject> testList = new List<GameObject>();

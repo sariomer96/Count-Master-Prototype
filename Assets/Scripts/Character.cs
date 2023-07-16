@@ -17,7 +17,7 @@ public abstract class Character : MonoBehaviour
         set
         {
             count = value;
-            FightStatus();
+            // FightStatus();
             
         }
     }
@@ -25,6 +25,7 @@ public abstract class Character : MonoBehaviour
     private int count=0;
    
    [SerializeField] public PoolTypes.CharacterTypes characterType;
+
 
 
 
