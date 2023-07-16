@@ -14977,7 +14977,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4203905012220081518, guid: 9b62785554db42045ab75560ec4977a0, type: 3}
       propertyPath: _forwardSpeed
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4203905012220081518, guid: 9b62785554db42045ab75560ec4977a0, type: 3}
       propertyPath: verticalSpeed
@@ -14989,7 +14989,7 @@ PrefabInstance:
       objectReference: {fileID: 926230006}
     - target: {fileID: 4203905012220081518, guid: 9b62785554db42045ab75560ec4977a0, type: 3}
       propertyPath: navAgentMaxSpeed
-      value: 1.5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8959788015909970001, guid: 9b62785554db42045ab75560ec4977a0, type: 3}
       propertyPath: count

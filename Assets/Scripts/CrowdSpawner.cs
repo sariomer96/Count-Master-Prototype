@@ -14,31 +14,15 @@ public class CrowdSpawner : MonoBehaviour
     void Start()
     {
         _colony = GetComponent<Colony>();
-        
-      
         SpawnCrowd(_spawnCount);
-         
-        
     } 
-    private void Update()
-    {
-        if (!CompareTag("Player"))
-         return;
-        
-        if (Input.GetMouseButtonDown(0))
-        {
-            SpawnCrowd(_spawnCount);
-           
-        }
-      
-    }
+  
 
   public  void SpawnCrowd(int count)
-  
-    {
-        for (int i = 0; i < count; i++)
-            ObjectPool.Instance.GetPooledObject((int)_colony.characterType,transform);
-        
-    }
+  {
+      
+    for (int i = 0; i < count; i++) 
+        ObjectPool.Instance.GetPooledObject((int)_colony.characterType,transform);
+  }
   
 }
