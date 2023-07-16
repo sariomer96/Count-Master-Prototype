@@ -137,6 +137,7 @@ namespace DG.Tweening
 
         void OnDestroy()
         {
+            if(!this.gameObject.scene.isLoaded) return;
             if (tween != null && tween.IsActive()) tween.Kill();
             tween = null;
         }

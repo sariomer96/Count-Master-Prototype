@@ -15,7 +15,11 @@ public class Tower : MonoBehaviour
             Btsf.towerList.Remove(this.gameObject);
 
             if (Btsf.towerList.Count == 0)
+            {
                 PlayerMovement.Instance.StopMove();
+                UiManager.Instance.Next();
+            }
+              
           
                 
         }

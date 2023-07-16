@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerMovement : Character, IMovable
@@ -19,7 +20,8 @@ public class PlayerMovement : Character, IMovable
     private Btsf _btsf;
    public static PlayerMovement Instance { get; set; }
    public float clampX = 2;
-   private event Action OnRemoveUnit;
+  
+   
     public Transform centerPosition;
     public void Move()
     {
@@ -65,19 +67,29 @@ public class PlayerMovement : Character, IMovable
 
     public override void FightStatus()
     {
-        /*UiManager.Instance.Retry();
-         StopMove();*/
+        
         
     }
-    public void RemoveUnit(CharacterUnit unit)
+    /*public void RemoveUnit(CharacterUnit unit)
     {
          
          Count--;
         characterUnits.Remove(unit);
-       // OnRemoveUnit?.Invoke();
+    
+       OnCountChanged?.Invoke();
     }
 
-      public void FailCheck()
+    public void AddUnit(CharacterUnit unit)
+    {
+        Count++;
+        characterUnits.Add(unit);
+       
+        OnCountChanged?.Invoke();
+    }*/
+
+
+
+    public void FailCheck()
      {
         
         if (characterUnits.Count==0)
@@ -86,6 +98,13 @@ public class PlayerMovement : Character, IMovable
             StopMove();
         } 
     }
+
+    /*private void OnEnable()
+    { 
+        OnCountChanged += SetCountText;
+         
+    }*/
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("enemyArea"))
@@ -103,7 +122,7 @@ public class PlayerMovement : Character, IMovable
         {
             StopNavmesh();
              StopMove();
-       
+             countTxt.enabled = false;
             _btsf.Build();
            
         }
@@ -122,14 +141,17 @@ public class PlayerMovement : Character, IMovable
     private void Start()
     {
          
-       OnRemoveUnit += FailCheck;
        _btsf = GetComponent<Btsf>();
+      
     }
 
-    private void OnDisable()
+    /*
+    private void OnDestroy()
     {
-        OnRemoveUnit -= FailCheck;
+        OnCountChanged -= SetCountText;
     }
+    */
+
 
     Transform GetCenterTransform(Vector3 enemyPosition)
     {

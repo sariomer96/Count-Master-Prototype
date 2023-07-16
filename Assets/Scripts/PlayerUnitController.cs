@@ -22,7 +22,7 @@ public class PlayerUnitController : CharacterUnit
         if (playerMovement)
         {
             playerMovement.Count++;
-            playerMovement.characterUnits.Add(this);
+            playerMovement.AddUnit(this);
         }
            
        
@@ -31,24 +31,7 @@ public class PlayerUnitController : CharacterUnit
 
 
   
-    private void OnDisable()
-    { 
-        /*if (playerMovement)
-        {
-            
-            print(playerMovement);
-             playerMovement.RemoveUnit(this);
-     
-           playerMovement.Count--;
-            if (playerMovement.characterUnits.Count==0)
-            {
-                print("ll");
-                playerMovement.FightStatus();
-             
-            }
-        }*/
-            
-    }
+   
 
     void KillUnit()
     {
@@ -105,6 +88,6 @@ public class PlayerUnitController : CharacterUnit
 
     protected override void CheckFightStatus()
     {
-         print("gameover");
+        
     }
 }

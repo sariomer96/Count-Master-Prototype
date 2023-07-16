@@ -15,8 +15,8 @@ public class EnemyUnitController : CharacterUnit
 
         if (_character)
         {
-            _character.characterUnits.Add(this);
-            _character.Count++;
+            _character.AddUnit(this);
+        
         }
          
        
@@ -29,8 +29,8 @@ public class EnemyUnitController : CharacterUnit
         if (_character)
         {
        
-            _character.characterUnits.Remove(this);
-            _character.Count--;
+            _character.RemoveUnit(this);
+          //  _character.Count--;
          
         }
             
