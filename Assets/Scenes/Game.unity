@@ -5821,11 +5821,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9566447a7dd34e44ca4a7e91ae343574, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basamakPrefab: {fileID: 6092647166400726462, guid: 34971290505ebdc4ba69c330cf2d7e94, type: 3}
-  basamakSayisi: 22
-  basamakYuksekligi: 1
-  basamakGenisligi: 6
-  basamakDerinligi: 1
+  stairPrefab: {fileID: 6092647166400726462, guid: 34971290505ebdc4ba69c330cf2d7e94, type: 3}
+  stairCount: 22
+  scaleY: 1
+  scaleX: 6
+  scaleZ: 1
 --- !u!1001 &7522773631638977293
 PrefabInstance:
   m_ObjectHideFlags: 0

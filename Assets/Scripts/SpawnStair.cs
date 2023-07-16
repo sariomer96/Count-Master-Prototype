@@ -8,22 +8,22 @@ public class SpawnStair : MonoBehaviour
  
 
  
-    public GameObject basamakPrefab;
-    public int basamakSayisi;
-    public float basamakYuksekligi;
-    public float basamakGenisligi;
-    public float basamakDerinligi;
+    public GameObject stairPrefab;
+    public int stairCount;
+    public float scaleY;
+    public float scaleX;
+    public float scaleZ;
 
    IEnumerator  Start()
    {
        yield return null;
-        for (int i = 0; i < basamakSayisi; i++)
+        for (int i = 0; i < stairCount; i++)
         {
-            Vector3 pozisyon = new Vector3(0f, i * basamakYuksekligi, i * basamakDerinligi);
+            Vector3 pozisyon = new Vector3(0f, i * scaleY, i * scaleZ);
             
-            GameObject basamak = Instantiate(basamakPrefab, Vector3.zero, Quaternion.identity,transform);
-            basamak.transform.localPosition = pozisyon;
-            basamak.transform.localScale = new Vector3(basamakGenisligi, basamakYuksekligi, basamakDerinligi);
+            GameObject stair = Instantiate(stairPrefab, Vector3.zero, Quaternion.identity,transform);
+            stair.transform.localPosition = pozisyon;
+            stair.transform.localScale = new Vector3(scaleX, scaleY, scaleZ);
         }
     }
  
