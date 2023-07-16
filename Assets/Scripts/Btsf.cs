@@ -15,6 +15,7 @@ public class Btsf : MonoBehaviour
   [SerializeField] private GameObject towerPrefab;
   private List<GameObject> testList = new List<GameObject>();
   [SerializeField] private float rate;
+  [SerializeField] private CinemachineController _camera;
     Character _character;
  
     bool move;
@@ -127,7 +128,7 @@ public class Btsf : MonoBehaviour
         PlayerMovement pm=_character.GetComponent<PlayerMovement>();
        
           pm.StartMove();
-     
+           _camera.SetTowerTarget(towerList[towerList.Count-1].transform);
         move = true;
     }
 }
