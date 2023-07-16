@@ -35,7 +35,6 @@ public class ObjectPool :MonoBehaviour
         
             for (int i = 0; i < _poolTypes.characterPool.Count; i++)
             {
-
                 pools.Add(new Pool());
                 
                 SpawnPool(i);
@@ -53,12 +52,9 @@ public class ObjectPool :MonoBehaviour
             character.gameObject.SetActive(false);
            
             pools[index].pooledObjects.Add(character);
-          
-       
+            
         }
     }
- 
- 
 
     public void ReturnToPool(CharacterUnit character,PoolTypes.CharacterTypes characterTypes)
     {
@@ -72,9 +68,8 @@ public class ObjectPool :MonoBehaviour
         
         GameObject character = null;
         if (objectType >= pools.Count)
-        {
             return null;
-        }
+        
 
        
         if ( pools[objectType].pooledObjects.Count==0)

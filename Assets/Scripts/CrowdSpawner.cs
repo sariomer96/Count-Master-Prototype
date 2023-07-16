@@ -8,26 +8,18 @@ using Random = UnityEngine.Random;
 
 public class CrowdSpawner : MonoBehaviour
 {
-    private Character character;
-    
-    [SerializeField] private float _density;
-    [SerializeField] private float _radius;
-
-
-    [SerializeField] private int count;
-    // Start is called before the first frame update
+    private Colony _colony;
+    [SerializeField] private int _spawnCount;
+  
     void Start()
     {
-        character = GetComponent<Character>();
+        _colony = GetComponent<Colony>();
         
       
-        SpawnCrowd(count);
+        SpawnCrowd(_spawnCount);
          
         
-    }
-    
-    
-
+    } 
     private void Update()
     {
         if (!CompareTag("Player"))
@@ -35,28 +27,18 @@ public class CrowdSpawner : MonoBehaviour
         
         if (Input.GetMouseButtonDown(0))
         {
-            SpawnCrowd(count);
+            SpawnCrowd(_spawnCount);
            
         }
       
     }
 
   public  void SpawnCrowd(int count)
+  
     {
         for (int i = 0; i < count; i++)
-        {
-            ObjectPool.Instance.GetPooledObject((int)character.characterType,transform);
-         
-           
-        }
+            ObjectPool.Instance.GetPooledObject((int)_colony.characterType,transform);
+        
     }
-    private Vector3 AddNoiseToObjectPosition(Transform objTrans)
-    {
-        Vector3 noisedPosition = new Vector3(objTrans.position.x + Random.Range(-0.5f, 0.5f), objTrans.position.y,
-            objTrans.position.z + Random.Range(-0.5f, 0.5f));
-        return noisedPosition;
-    }
-    
   
-   
 }

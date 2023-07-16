@@ -5,10 +5,8 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "PoolTypes", menuName = "PoolTypes/Pool", order = 1)]
 public class PoolTypes : ScriptableObject
-{
-   
-
-
+{ 
+    
     [Serializable]
     public class Pool
     {

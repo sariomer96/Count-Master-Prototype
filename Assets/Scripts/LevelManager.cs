@@ -5,9 +5,9 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     [Header("Test Level")]
-    public Level testLevel;
+    public GameObject testLevel;
     [Header("Level List")]
-    public List<Level> Levels = new List<Level>();
+    public List<GameObject> Levels = new List<GameObject>();
    
 
     public void CreateLevel()
@@ -22,14 +22,13 @@ public class LevelManager : MonoBehaviour
             if (PlayerPrefs.GetInt("CurrentLevel") == 0)
             {
                 Instantiate(Levels[0], new Vector3(0, 0, 0), Quaternion.identity);
-                // PlayerPrefs.SetInt("CurrentLevel", PlayerPrefs.GetInt("CurrentLevel") + 1);
+            
             }
             else
             {
                 if (PlayerPrefs.GetInt("CurrentLevel") >= Levels.Count)
-                {
                     PlayerPrefs.SetInt("CurrentLevel", 0);
-                }
+                
                 Instantiate(Levels[PlayerPrefs.GetInt("CurrentLevel")], new Vector3(0, 0, 0), Quaternion.identity);
             }
 

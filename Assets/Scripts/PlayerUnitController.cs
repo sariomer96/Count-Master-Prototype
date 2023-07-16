@@ -6,58 +6,34 @@ using UnityEngine.AI;
 
 public class PlayerUnitController : CharacterUnit
 {
-    #region Unity Methods
-
-    private PlayerMovement playerMovement;
+    
  
     private void OnEnable()
     {
-        
         destination = transform.parent;
 
+        playerColony.AddUnit(this);
         
-
-         playerMovement = transform.GetComponentInParent<PlayerMovement>();
-     
-        if (playerMovement)
-        {
-            playerMovement.Count++;
-            playerMovement.AddUnit(this);
-        }
-           
-       
-
     }
-
-
-  
-   
-
     void KillUnit()
     {
-        if (playerMovement)
-        {
-            playerMovement.RemoveUnit(this);
-            if (playerMovement.characterUnits.Count==0)
-            {
-              
-                playerMovement.FailCheck();
-             
-            }
-        }
+         
+       playerColony.RemoveUnit(this);
+      
+       if (playerColony.characterUnits.Count==0)
+           playerColony.FailCheck();
+      
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("trap"))
-        {
-
             StartCoroutine(nameof(Fall));
-        }
+        
 
         if (other.CompareTag("enemyUnit"))
         {
-            CharacterUnit enemy=other.GetComponentInParent<CharacterUnit>();
+            CharacterUnit enemy=other.GetComponent<CharacterUnit>();
             ObjectPool.Instance.ReturnToPool(this,PoolTypes.CharacterTypes.MainPlayer);
             ObjectPool.Instance.ReturnToPool(enemy,PoolTypes.CharacterTypes.Enemy);
             KillUnit();
@@ -68,26 +44,19 @@ public class PlayerUnitController : CharacterUnit
 
     IEnumerator Fall()
     {
- 
-       
+  
         agent.enabled = false;
-        _rigidbody.constraints = RigidbodyConstraints.None;
-        _rigidbody.useGravity = true;
-        playerMovement.RemoveUnit(this);
-        playerMovement.FailCheck();
+        rigidBody.constraints = RigidbodyConstraints.None;
+        rigidBody.useGravity = true;
+        
+        playerColony.RemoveUnit(this);
+        playerColony.FailCheck();
+        
         yield return new WaitForSeconds(1f);
-        
-        
-        Character character = transform.GetComponentInParent<Character>();
-        ObjectPool.Instance.ReturnToPool(this,character.characterType);
+         
+        Colony colony = transform.GetComponentInParent<Colony>();
+        ObjectPool.Instance.ReturnToPool(this,colony.characterType);
       
     }
-
-    #endregion
-
-
-    protected override void CheckFightStatus()
-    {
-        
-    }
+ 
 }

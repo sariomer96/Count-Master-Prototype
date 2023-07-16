@@ -11,14 +11,10 @@ public class CinemachineController : MonoBehaviour
     {
         _camera = GetComponent<CinemachineVirtualCamera>();
     }
-
-
-
     public void SetTowerTarget(Transform target)
     {
         _camera.Priority = 10;
         _camera.Follow = target;
-
     }
     
     

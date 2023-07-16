@@ -4,46 +4,52 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PlayerMovement : Character, IMovable
+public class PlayerColonyController : Colony, IMovable
 {
 
     private SwerveInputSystem _swerveInputSystem;
-  
     private Vector3 _pos;
-    public float verticalSpeed = 2f;
-    private float mouseX = 0f;
-    private Enemy _enemy;
+    private EnemyColony _enemy;
+    [SerializeField] private float _forwardSpeed = 2f;
     [SerializeField] private float _swerveSpeed = 10f;
     private Rigidbody _rigidbody;
- 
-    private BuildTower _buildTower;
-    private Btsf _btsf;
- 
-   public static PlayerMovement Instance { get; set; }
-   public float clampX = 2;
-  
-   
-    public Transform centerPosition;
-    public void Move()
-    {
- 
-        _rigidbody.velocity = new Vector3(_pos.x*_swerveSpeed, 0, verticalSpeed);
+    private MakeTower _makeTower;
+    private float _tempForwardSpeed;
+    private float _tempSwerveSpeed;
     
+    public bool isMove = true; 
+    public static PlayerColonyController Instance { get; set; }
+    public float clampX = 2;
+    public Transform centerPosition;
+  
+  
+   private void Start()
+   {
+         
+       _makeTower = GetComponent<MakeTower>();
+       SetTempSpeeds();
+   }
+   
+   public void Move()
+    {
+        _rigidbody.velocity = new Vector3(_pos.x*_swerveSpeed, 0, _forwardSpeed);
     }
 
     
     public void StopMove()
     {
         
-        verticalSpeed = 0;
+        _forwardSpeed = 0;
         _swerveSpeed = 0;
-        
+       
     }
 
     public void StartMove()
     {
-        verticalSpeed = 7f;
-        _swerveSpeed = 10f;
+        
+        _forwardSpeed =_tempForwardSpeed;
+        _swerveSpeed = _tempSwerveSpeed;
+       
     }
 
     private void Update()
@@ -64,53 +70,24 @@ public class PlayerMovement : Character, IMovable
         if (Instance == null)
             Instance = this;
     }
-    
-
-    public override void FightStatus()
-    {
-        
-        
-    }
-    /*public void RemoveUnit(CharacterUnit unit)
-    {
-         
-         Count--;
-        characterUnits.Remove(unit);
-    
-       OnCountChanged?.Invoke();
-    }
-
-    public void AddUnit(CharacterUnit unit)
-    {
-        Count++;
-        characterUnits.Add(unit);
-       
-        OnCountChanged?.Invoke();
-    }*/
-
-
-
+  
     public void FailCheck()
      {
         
         if (characterUnits.Count==0)
         {
+            _rigidbody.velocity=Vector3.zero;
+            isMove = false;
             UiManager.Instance.Retry();
             StopMove();
         } 
     }
 
-    /*private void OnEnable()
-    { 
-        OnCountChanged += SetCountText;
-         
-    }*/
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("enemyArea"))
         {
-            _enemy = other.GetComponent<Enemy>();
+            _enemy = other.GetComponent<EnemyColony>();
             StopMove();
 
            Transform hitCenter= GetCenterTransform(_enemy.transform.position);
@@ -125,36 +102,21 @@ public class PlayerMovement : Character, IMovable
             StopNavmesh();
              StopMove();
              countTxt.enabled = false;
-            _btsf.Build();
+            _makeTower.Build();
            
-        }
-
-        
+        } 
     }
-
     void StopNavmesh()
     {
         for (int i = 0; i < characterUnits.Count; i++)
-        {
             characterUnits[i].agent.enabled = false;
-        }
+        
     }
-
-    private void Start()
+    void SetTempSpeeds()
     {
-         
-       _btsf = GetComponent<Btsf>();
- 
-
+        _tempForwardSpeed = _forwardSpeed;
+        _tempSwerveSpeed = _swerveSpeed;
     }
-
-    /*
-    private void OnDestroy()
-    {
-        OnCountChanged -= SetCountText;
-    }
-    */
-
 
     Transform GetCenterTransform(Vector3 enemyPosition)
     {
@@ -165,7 +127,7 @@ public class PlayerMovement : Character, IMovable
     }
     private void FixedUpdate()
     {
-       
+        if (isMove)
             Move(); 
     }
 

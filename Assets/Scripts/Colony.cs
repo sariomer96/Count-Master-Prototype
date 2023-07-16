@@ -5,36 +5,26 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
-public abstract class Character : MonoBehaviour
+public abstract class Colony : MonoBehaviour
 {
-    [SerializeField] protected float _moveSpeed = 2f;
-    public List<CharacterUnit> characterUnits = new List<CharacterUnit>();
+   
+    public List<CharacterUnit> characterUnits = new List<CharacterUnit>(); 
+    public float navAgentSpeed=0.3f;
+    public float navAgentMaxSpeed=7f;
+    
     [SerializeField] protected TextMeshPro countTxt;
-     private event Action OnCountChanged;
-     [SerializeField] public float navAgentSpeed=0.3f;
-     public float navAgentMaxSpeed=7f;
-    public int Count
-    {
-        get
-        {
-            return count;
-        }
-        set
-        {
-            count = value;
-            FightStatus();
-            
-        }
-    }
+    
+     protected event Action OnCountChanged;
 
-    private int count=0;
+   
+ 
    
    [SerializeField] public PoolTypes.CharacterTypes characterType;
 
    public void RemoveUnit(CharacterUnit unit)
    {
          
-       Count--;
+      // Count--;
        characterUnits.Remove(unit);
     
        OnCountChanged?.Invoke();
@@ -48,13 +38,13 @@ public abstract class Character : MonoBehaviour
    private void OnDisable()
    {
       
-       if(!this.gameObject.scene.isLoaded) return;
+       if(!gameObject.scene.isLoaded) return;
        OnCountChanged -= SetCountText;
    }
     
    public void AddUnit(CharacterUnit unit)
    {
-       Count++;
+     
        characterUnits.Add(unit);
        
        OnCountChanged?.Invoke();
@@ -72,7 +62,7 @@ public abstract class Character : MonoBehaviour
    
  
 
-   public abstract void FightStatus();
+   
     
   public void SetTargetNavAgentAllUnit(Transform target)
    {

@@ -464,7 +464,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1632285435401412600}
-  - component: {fileID: 8485077888801544506}
   m_Layer: 0
   m_Name: Level1
   m_TagString: Untagged
@@ -492,18 +491,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8485077888801544506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8368136303021435546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1dd523798bde1f4c94578bb7dc1c9dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2663044718370412960
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -511,6 +498,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1632285435401412600}
     m_Modifications:
+    - target: {fileID: 2130819610864419951, guid: 5437a7f8141dcd045aaf3d87d796b43f, type: 3}
+      propertyPath: _count
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 2130819610864419951, guid: 5437a7f8141dcd045aaf3d87d796b43f, type: 3}
+      propertyPath: _operation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5840479378294318583, guid: 5437a7f8141dcd045aaf3d87d796b43f, type: 3}
+      propertyPath: _count
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5840479378294318583, guid: 5437a7f8141dcd045aaf3d87d796b43f, type: 3}
       propertyPath: operation
       value: 1
@@ -643,11 +642,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7522773630868292595, guid: 2d4a5331bc3bfcb4ca99da57a8bda32c, type: 3}
       propertyPath: navAgentMaxSpeed
-      value: 2
+      value: 3.6
       objectReference: {fileID: 0}
     - target: {fileID: 7522773630868292598, guid: 2d4a5331bc3bfcb4ca99da57a8bda32c, type: 3}
       propertyPath: count
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7522773630868292598, guid: 2d4a5331bc3bfcb4ca99da57a8bda32c, type: 3}
+      propertyPath: _spawnCount
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7522773630868292599, guid: 2d4a5331bc3bfcb4ca99da57a8bda32c, type: 3}
       propertyPath: m_Name
@@ -737,7 +740,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6518266278234137412, guid: 055d06ea922565c43af745aac5173299, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6518266278546321809, guid: 055d06ea922565c43af745aac5173299, type: 3}
       propertyPath: m_Size.y

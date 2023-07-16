@@ -8,11 +8,11 @@ public class SpawnStair : MonoBehaviour
  
 
  
-    public GameObject stairPrefab;
-    public int stairCount;
-    public float scaleY;
-    public float scaleX;
-    public float scaleZ;
+    [SerializeField] private GameObject stairPrefab;
+    [SerializeField] private int stairCount;
+    [SerializeField] private float scaleY;
+    [SerializeField] private float scaleX;
+    [SerializeField] private float scaleZ;
 
    IEnumerator  Start()
    {

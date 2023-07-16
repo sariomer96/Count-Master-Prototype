@@ -5,43 +5,23 @@ using UnityEngine;
 
 public class EnemyUnitController : CharacterUnit
 {
-     
-    
-    
-  
+ 
     private void OnEnable()
     {
         
         destination = transform.parent;
 
-        _character = transform.GetComponentInParent<Character>();
+        _colony = transform.GetComponentInParent<Colony>();
 
-        if (_character)
-        {
-            _character.AddUnit(this);
+        if (_colony)
+           _colony.AddUnit(this);
         
-        }
-         
-       
-
-    }
-
- 
-    private void OnDisable()
-    { 
-        if (_character)
-        {
-       
-            _character.RemoveUnit(this);
-          //  _character.Count--;
-         
-        }
-            
     }
     
- 
-    protected override void CheckFightStatus()
-    {
-         
+    private void OnDisable()
+    { 
+        if (_colony)
+            _colony.RemoveUnit(this);
+        
     }
 }

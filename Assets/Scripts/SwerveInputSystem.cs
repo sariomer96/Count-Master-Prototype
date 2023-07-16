@@ -12,7 +12,7 @@ public class SwerveInputSystem : MonoBehaviour
    private Vector3 _direction;
    private Vector3 _startPos;
    private Vector3 _finishPos;
-   [SerializeField] float _finishSpeed;
+   [SerializeField] private float _finishSpeed;
 
     
     

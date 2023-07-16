@@ -12,54 +12,46 @@ enum Operation
 
 public class Gate : MonoBehaviour
 {
-    #region Private Fields
+    
 
-    [SerializeField] private Operation operation;
-    [SerializeField] private int value;
+    [SerializeField] private Operation _operation;
+    [SerializeField] private int _count;
     [SerializeField] private TextMeshPro gateTxt;
-   [SerializeField] private GameObject gate;
-   
-    #endregion
-
-
-    #region Unity Methods
- 
+    [SerializeField] private GameObject gate;
+    
+    private void Start()
+    {
+        SetGateText();
+    }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
            
-            if (operation == Operation.Add)
-            { 
-                Add(other.transform,value);
-            }
-            else if (operation == Operation.Multiply)
+            if (_operation == Operation.Add)
+                Add(other.transform,_count);
+            
+            else if (_operation == Operation.Multiply)
             {
-                Character character = other.GetComponent<Character>();
-                int count=Multiply(character);
-                print(count);
-                Add(character.transform,count);
+                Colony colony = other.GetComponent<Colony>();
+                int count=Multiply(colony);
+                
+                Add(colony.transform,count);
                
             }
             gate.SetActive(false);
         }
-    }
-
-    private void Start()
-    {
-         SetGateText();
-    }
-
+    } 
     void SetGateText()
     {
-        switch (operation)
+        switch (_operation)
         {
             case Operation.Add:
-                gateTxt.text = "+" + value;
+                gateTxt.text = "+" + _count;
                 break;
             case Operation.Multiply:
-                gateTxt.text = "X" + value;
+                gateTxt.text = "X" + _count;
                 break;
         }
     }
@@ -69,13 +61,10 @@ public class Gate : MonoBehaviour
             ObjectPool.Instance.GetPooledObject((int)PoolTypes.CharacterTypes.MainPlayer, player);
          
     }
-
-    int Multiply(Character character)
+    int Multiply(Colony colony)
     {
-        int spawnCount = (value - 1) * character.characterUnits.Count;
+        int spawnCount = (_count - 1) * colony.characterUnits.Count;
         return spawnCount;
 
     }
-
-    #endregion
 }
