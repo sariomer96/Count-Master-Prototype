@@ -14,8 +14,9 @@ public class SpawnStair : MonoBehaviour
     public float basamakGenisligi;
     public float basamakDerinligi;
 
-    void Start()
-    {
+   IEnumerator  Start()
+   {
+       yield return null;
         for (int i = 0; i < basamakSayisi; i++)
         {
             Vector3 pozisyon = new Vector3(0f, i * basamakYuksekligi, i * basamakDerinligi);

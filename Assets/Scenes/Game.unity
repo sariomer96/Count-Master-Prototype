@@ -5822,8 +5822,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basamakPrefab: {fileID: 6092647166400726462, guid: 34971290505ebdc4ba69c330cf2d7e94, type: 3}
-  basamakSayisi: 10
-  basamakYuksekligi: 0.78
+  basamakSayisi: 22
+  basamakYuksekligi: 1
   basamakGenisligi: 6
   basamakDerinligi: 1
 --- !u!1001 &7522773631638977293
