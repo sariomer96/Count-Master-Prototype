@@ -12,6 +12,8 @@ namespace Colony
         public List<CharacterUnit> characterUnits = new List<CharacterUnit>(); 
         public float navAgentSpeed=0.3f;
         public float navAgentMaxSpeed=7f;
+      
+        
     
         [SerializeField] protected TextMeshPro countTxt;
     

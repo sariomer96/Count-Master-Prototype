@@ -11,10 +11,12 @@ namespace Colony
         private void OnEnable()
         {
             destination = transform.parent;
-
+           
             playerColony.AddUnit(this);
         
         }
+
+       
         void KillUnit()
         {
          
@@ -46,17 +48,19 @@ namespace Colony
         {
   
             agent.enabled = false;
-            rigidBody.constraints = RigidbodyConstraints.None;
+           
+             rigidBody.constraints = RigidbodyConstraints.None;
             rigidBody.useGravity = true;
-        
+          
             playerColony.RemoveUnit(this);
             playerColony.FailCheck();
-        
+            Colony colony = transform.GetComponentInParent<Colony>();
+            transform.SetParent(null);
             yield return new WaitForSeconds(1f);
          
-            Colony colony = transform.GetComponentInParent<Colony>();
+         
             ObjectPool.ObjectPool.Instance.ReturnToPool(this,colony.characterType);
-      
+          
         }
  
     }

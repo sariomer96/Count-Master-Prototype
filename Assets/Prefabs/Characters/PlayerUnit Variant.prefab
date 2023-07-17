@@ -8,6 +8,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 131792664923028694, guid: 6118ea5b20fd8004dbd2f7ac9f9dae58, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 131792664923028694, guid: 6118ea5b20fd8004dbd2f7ac9f9dae58, type: 3}
+      propertyPath: m_Constraints
+      value: 126
+      objectReference: {fileID: 0}
+    - target: {fileID: 131792664923028694, guid: 6118ea5b20fd8004dbd2f7ac9f9dae58, type: 3}
       propertyPath: m_Interpolate
       value: 1
       objectReference: {fileID: 0}
@@ -102,5 +110,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a722334c049e1e44b94fc92d0a9f503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destination: {fileID: 0}
   agent: {fileID: 0}
+  destination: {fileID: 0}
+  stoppingDistance: 0.3

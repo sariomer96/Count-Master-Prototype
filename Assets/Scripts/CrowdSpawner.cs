@@ -14,7 +14,7 @@ public class CrowdSpawner : MonoBehaviour
     void Start()
     {
         _colony = GetComponent<Colony.Colony>();
-        SpawnCrowd(_spawnCount);
+         SpawnCrowd(_spawnCount);
     } 
   
 

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -13,12 +14,29 @@ namespace Colony
     
         public NavMeshAgent agent;
         public Transform destination;
-
+        [SerializeField] private float stoppingDistance = 0.3f;
         private void Start()
         {
             agent =GetComponent<NavMeshAgent>();
             rigidBody = GetComponent<Rigidbody>();
-        
+            agent.stoppingDistance =stoppingDistance;
+            
+
+        }
+
+        void ResetUnit()
+        {
+            if (agent)
+                agent.speed = playerColony.navAgentSpeed;
+
+            rigidBody.constraints = RigidbodyConstraints.FreezeAll;
+            rigidBody.useGravity = false;
+            agent.enabled = true;
+        }
+        private void OnDisable()
+        {
+
+            ResetUnit();
         }
 
         private void Awake()

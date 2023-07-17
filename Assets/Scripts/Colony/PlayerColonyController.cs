@@ -22,11 +22,11 @@ namespace Colony
         public static PlayerColonyController Instance { get; set; }
         public float clampX = 2;
         public Transform centerPosition;
-  
+     
   
         private void Start()
         {
-         
+            
             _makeTower = GetComponent<MakeTower>();
             SetTempSpeeds();
         }
