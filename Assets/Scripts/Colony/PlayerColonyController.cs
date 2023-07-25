@@ -1,4 +1,5 @@
 using Managers;
+using ObjectPool;
 using Swerve;
 using Tower;
 using UnityEngine;
@@ -29,6 +30,12 @@ namespace Colony
             
         
             SetTempSpeeds();
+        }
+
+        public void AddUnit(int count)
+        {
+            for (int i = 0; i < count; i++)
+                ObjectPool.ObjectPool.Instance.GetPooledObject((int)PoolTypes.CharacterTypes.MainPlayer,transform);
         }
    
         public void Move()

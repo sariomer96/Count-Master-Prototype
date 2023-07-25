@@ -25,10 +25,8 @@ namespace Tower
         void CheckLastTower()
         {
             if (MakeTower.towerList.Count == 0)
-            {
-                PlayerColonyController.Instance.StopMove();
-                UiManager.Instance.Next();
-            }
+                GameManager.Instance.OnLevelEnd();
+            
         }
     
     }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Colony;
 using ObjectPool;
 using TMPro;
 using UnityEngine;
@@ -31,17 +32,14 @@ namespace Gate
         {
             if (other.CompareTag("Player"))
             {
-           
                 if (_operation == Operation.Add)
-                    Add(other.transform,_count);
+                    PlayerColonyController.Instance.AddUnit(_count);
             
                 else if (_operation == Operation.Multiply)
                 {
                     Colony.Colony colony = other.GetComponent<Colony.Colony>();
                     int count=Multiply(colony);
-                
-                    Add(colony.transform,count);
-               
+                    PlayerColonyController.Instance.AddUnit(count);
                 }
                 gate.SetActive(false);
             }
@@ -58,12 +56,7 @@ namespace Gate
                     break;
             }
         }
-        void Add(Transform player,int count)
-        {
-            for (int i = 0; i < count; i++)
-                ObjectPool.ObjectPool.Instance.GetPooledObject((int)PoolTypes.CharacterTypes.MainPlayer, player);
-         
-        }
+      
         int Multiply(Colony.Colony colony)
         {
             int spawnCount = (_count - 1) * colony.characterUnits.Count;
