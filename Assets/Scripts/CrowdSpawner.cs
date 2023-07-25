@@ -13,12 +13,16 @@ public class CrowdSpawner : MonoBehaviour
   
     void Start()
     {
-        _colony = GetComponent<Colony.Colony>();
+        
          SpawnCrowd(_spawnCount);
-    } 
-  
+    }
 
-  public  void SpawnCrowd(int count)
+    private void Awake()
+    {
+        _colony = GetComponent<Colony.Colony>();
+    }
+
+    public  void SpawnCrowd(int count)
   {
       
     for (int i = 0; i < count; i++) 

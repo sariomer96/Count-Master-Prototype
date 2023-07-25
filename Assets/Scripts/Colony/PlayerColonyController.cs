@@ -27,7 +27,7 @@ namespace Colony
         private void Start()
         {
             
-            _makeTower = GetComponent<MakeTower>();
+        
             SetTempSpeeds();
         }
    
@@ -66,10 +66,14 @@ namespace Colony
 
         private void Awake()
         {
-            _rigidbody = GetComponent<Rigidbody>();
-            _swerveInputSystem = GetComponent<SwerveInputSystem>();
             if (Instance == null)
                 Instance = this;
+            
+            _makeTower = GetComponent<MakeTower>();
+            _rigidbody = GetComponent<Rigidbody>();
+            _swerveInputSystem = GetComponent<SwerveInputSystem>();
+            
+          
         }
   
         public void FailCheck()

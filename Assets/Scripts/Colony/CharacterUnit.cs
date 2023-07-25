@@ -17,11 +17,7 @@ namespace Colony
         [SerializeField] private float stoppingDistance = 0.3f;
         private void Start()
         {
-            agent =GetComponent<NavMeshAgent>();
-            rigidBody = GetComponent<Rigidbody>();
             agent.stoppingDistance =stoppingDistance;
-            
-
         }
 
         void ResetUnit()
@@ -41,6 +37,8 @@ namespace Colony
 
         private void Awake()
         {
+            agent =GetComponent<NavMeshAgent>();
+            rigidBody = GetComponent<Rigidbody>();
             playerColony=PlayerColonyController.Instance;
         }
 

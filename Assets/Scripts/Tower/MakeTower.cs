@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using CameraCinemachine;
@@ -18,13 +19,14 @@ namespace Tower
    
         public static List<GameObject> towerList=new List<GameObject>();
 
- 
-
-        private void Start()
+        private void Awake()
         {
             _colony = GetComponent<Colony.Colony>();
-            towerCountList = new List<int>();
+        }
 
+        private void Start()
+        { 
+            towerCountList = new List<int>();
         }
    
    
