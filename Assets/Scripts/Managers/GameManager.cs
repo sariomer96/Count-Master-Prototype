@@ -17,7 +17,7 @@ namespace Managers
         {
        
             SceneManager.LoadScene("Game");
-            PlayerPrefs.SetInt("CurrentLevel", PlayerPrefs.GetInt("CurrentLevel") + 1);
+            _levelManager.SetLevel();
         }
 
         public void LevelFail()
