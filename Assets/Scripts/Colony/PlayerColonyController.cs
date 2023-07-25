@@ -92,14 +92,8 @@ namespace Colony
         {
             if (other.CompareTag("enemyArea"))
             {
-                _enemy = other.GetComponent<EnemyColony>();
                 StopMove();
-
-                Transform hitCenter= GetCenterTransform(_enemy.transform.position);
-                SetTargetNavAgentAllUnit(hitCenter);
-                _enemy.SetTargetNavAgentAllUnit(hitCenter);
-
-                SetNavAgentSpeed(navAgentMaxSpeed);
+                ChangeTargetUnits(other.transform);
             }
 
             if (other.CompareTag("Finish"))
@@ -108,9 +102,17 @@ namespace Colony
                 StopMove();
                 countTxt.enabled = false;
                 _makeTower.Build();
-           
             } 
         }
+
+        void ChangeTargetUnits(Transform hitEnemy)
+        {
+            _enemy = hitEnemy.GetComponent<EnemyColony>();
+            Transform hitCenter= GetCenterTransform(_enemy.transform.position);
+            SetTargetNavAgentAllUnit(hitCenter);
+            _enemy.SetTargetNavAgentAllUnit(hitCenter);
+        }
+        
         void StopNavmesh()
         {
             for (int i = 0; i < characterUnits.Count; i++)

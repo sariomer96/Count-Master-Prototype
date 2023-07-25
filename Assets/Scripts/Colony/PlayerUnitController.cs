@@ -35,13 +35,22 @@ namespace Colony
 
             if (other.CompareTag("enemyUnit"))
             {
-                CharacterUnit enemy=other.GetComponent<CharacterUnit>();
-                ObjectPool.ObjectPool.Instance.ReturnToPool(this,PoolTypes.CharacterTypes.MainPlayer);
-                ObjectPool.ObjectPool.Instance.ReturnToPool(enemy,PoolTypes.CharacterTypes.Enemy);
+                ReturnPool(other.transform);
                 KillUnit();
-                other.gameObject.SetActive(false);
-                gameObject.SetActive(false);
+                HideUnit(other.gameObject);
             }
+        }
+
+        void HideUnit(GameObject hitObject)
+        {
+            hitObject.gameObject.SetActive(false);
+            gameObject.SetActive(false);
+        }
+        void ReturnPool(Transform hit)
+        {
+            CharacterUnit enemy=hit.GetComponent<CharacterUnit>();
+            ObjectPool.ObjectPool.Instance.ReturnToPool(this,PoolTypes.CharacterTypes.MainPlayer);
+            ObjectPool.ObjectPool.Instance.ReturnToPool(enemy,PoolTypes.CharacterTypes.Enemy);
         }
 
         IEnumerator Fall()

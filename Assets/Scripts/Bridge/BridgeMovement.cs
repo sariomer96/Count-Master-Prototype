@@ -10,11 +10,10 @@ namespace Bridge
 
         [SerializeField] private float speed = 5f;
  
-        IEnumerator Start()
+        void Start()
         {
-            float random = Random.Range(0.5f, 1.5f);
-            yield return new WaitForSeconds(random);
-            transform.DOMoveX(moveRate, speed).SetLoops(-1,LoopType.Yoyo).SetEase(Ease.Linear).SetSpeedBased(true);
+            float random = Random.Range(0.5f, 2f);
+            transform.DOMoveX(moveRate, speed).SetLoops(-1,LoopType.Yoyo).SetEase(Ease.Linear).SetSpeedBased(true).SetDelay(random);
         }
  
     }
