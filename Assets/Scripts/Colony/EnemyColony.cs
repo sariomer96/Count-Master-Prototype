@@ -27,6 +27,7 @@ namespace Colony
             {
                 _playerColony.SetTargetNavAgentAllUnit(_playerColony.transform);
                 _playerColony.StartMove();
+              
                 _playerColony.SetNavAgentSpeed(_playerColony.navAgentSpeed);
             }
         }

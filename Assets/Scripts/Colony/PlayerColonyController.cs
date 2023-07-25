@@ -94,6 +94,7 @@ namespace Colony
             {
                 StopMove();
                 ChangeTargetUnits(other.transform);
+                SetNavAgentSpeed(navAgentMaxSpeed);
             }
 
             if (other.CompareTag("Finish"))
@@ -111,6 +112,7 @@ namespace Colony
             Transform hitCenter= GetCenterTransform(_enemy.transform.position);
             SetTargetNavAgentAllUnit(hitCenter);
             _enemy.SetTargetNavAgentAllUnit(hitCenter);
+          
         }
         
         void StopNavmesh()
