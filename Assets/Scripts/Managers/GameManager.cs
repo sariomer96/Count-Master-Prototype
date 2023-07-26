@@ -1,3 +1,4 @@
+using System;
 using Colony;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,7 +10,16 @@ namespace Managers
         // Start is called before the first frame update
         [SerializeField] private LevelManager _levelManager;
         public static GameManager Instance { get; set; }
-        
+
+
+        private void Awake()
+        {
+            if (Instance==null)
+            {
+                Instance = this;
+            }
+        }
+
         private void Start()
         {
             _levelManager.CreateLevel();
@@ -29,6 +39,7 @@ namespace Managers
 
         public void OnLevelEnd()
         {
+    
             PlayerColonyController.Instance.StopMove();
             UiManager.Instance.Next();
         }
